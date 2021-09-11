@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alex Clifton</title>
+
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .header {
+            color: white;
+        }
+
+        .mainBody {
+            font-size: larger;
+            color: white;
+        }
+
+        .link {
+            font-weight: bold;
+            text-underline: none;
+            text-decoration: none;
+            color: lightgray;
+        }
+
+        .outlined {
+            border-radius: 10px;
+            border: grey solid 1px;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+<body style="background-color: #181818">
+    <div id="body" style="opacity: 0">
+        <div class="header center">
+            <h1 style="letter-spacing: 3px">Alex Clifton</h1>
+        </div>
+        <div class="center mainBody">
+            <div style="width: 50vw; text-align: center" class="outlined" id="mainText">
+                Placeholder Text
+            </div>
+        </div>
+        <br>
+        <div class="mainBody center"><a class="link" href="https://github.com/AJClifton" target="_blank"> << GitHub >> </a></div>
+        <br>
+        <div class="mainBody center"><a class="link" href="https://www.horrid57.co.uk" target="_blank"> < Other Website > </a></div>
+        <div class="mainBody center"><a class="link" href="https://github.com/horrid57" target="_blank"> < Second GitHub > </a></div>
+    </div>
+
+    <script>
+        fetch("https://raw.githubusercontent.com/AJClifton/AJClifton/main/README.md")
+            .then(response => {
+                if (response.status >= 200 && response.status <= 299) {
+                    return response.text()
+                } else {
+                    return "Either GitHub is down or my code is broken."
+                }
+            })
+            .then(text => document.getElementById("mainText").innerHTML = text)
+            .then(temp => document.getElementById("body").style.opacity = "100")
+    </script>
+</body>
+</html>
