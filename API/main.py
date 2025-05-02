@@ -2,6 +2,7 @@ import flask
 import flask_login
 import yaml
 import playtime
+from Modules.error_logger import ErrorLogger, ErrorSeverity
 
 config = yaml.safe_load(open("config.yaml"))
 app = flask.Flask(__name__, template_folder='templates')
@@ -15,4 +16,6 @@ def fetch_steam_playtime():
     steam_playtime = playtime.Playtime()
     return steam_playtime.fetch_data(args.get("username", None), args.get("game_name", None), None, None)
 
-
+@app.route("/api/errors")
+def fetch_errors():
+    return ErrorLogger().get_errors()

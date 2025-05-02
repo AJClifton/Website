@@ -1,4 +1,6 @@
+import os
 import sqlite3
+import traceback
 import yaml
 import uuid
 from enum import Enum
@@ -39,6 +41,17 @@ class ErrorLogger:
                                 (error_id, int(time.time()), severity.value, source, error, stack_trace, user_id, additional_data))
         except sqlite3.IntegrityError:
             self.log_error(severity, source, error, stack_trace, user_id=user_id, additional_data=additional_data)
+
+    def get_errors(self):
+        try:
+            with self.con:
+                result = self.con.execute("""SELECT * FROM errors""")
+                return result.fetchall()
+        except Exception as e:
+            self.log_error(ErrorSeverity.ERROR, 
+                           os.path.basename(__file__),
+                           type(e).__name__, 
+                           traceback.format_exc())
 
 
 class ErrorSeverity(Enum):
