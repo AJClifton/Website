@@ -200,6 +200,7 @@ class Playtime():
                     playtime_2weeks = float(game["playtime_2weeks"])
 
                     if last_total_time is not None:
+                        # TODO something about this isn't quite right. Have a look into it. daily said to be zero when it shouldn't be as first value.
                         daily_hours = playtime_forever - last_total_time
                     elif playtime_forever == playtime_2weeks and self.days_collected_for_user(username) == 0:
                         daily_hours = playtime_2weeks
@@ -207,6 +208,7 @@ class Playtime():
                         daily_hours = 0
 
                     self.insert_data(date, username, appid, playtime_forever, daily_hours, playtime_2weeks)
+
 
     # If a game has  a ' in its title, it will be surrounded by double quotes. 
     # It should not be replaced by " so a simple replace won't work here
