@@ -2,7 +2,7 @@ import requests
 import datetime
 import sqlite3
 import yaml
-from Modules.error_logger import ErrorLogger, ErrorSeverity
+from modules.error_logger import ErrorLogger, ErrorSeverity
 import traceback
 import os
 import json

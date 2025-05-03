@@ -42,3 +42,12 @@ next-env.d.ts
 
 
 /README.md
+
+
+api/__pycache__
+api/modules/__pycache__
+api/config.yaml
+api/errors.db
+api/horrid57.txt
+api/hours_migration2.py
+api/playtime.db
